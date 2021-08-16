@@ -1,12 +1,20 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Article, useGetArticleByIdQuery } from "../services/article";
+import { useGetArticleByIdQuery } from "../services/article";
 
 type ArticlePageProps = {};
 
+interface IParams {
+  id: string;
+}
+
 const ArticlePage: React.FC<ArticlePageProps> = () => {
-  const { id } = useParams();
-  const { data: article, error, isLoading } = useGetArticleByIdQuery(id);
+  const { id } = useParams<IParams>();
+  const {
+    data: article,
+    error,
+    isLoading,
+  } = useGetArticleByIdQuery(Number(id));
 
   return (
     <div>
