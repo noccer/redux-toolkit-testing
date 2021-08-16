@@ -4,7 +4,7 @@ import { Article, useGetArticlesQuery } from "../services/article";
 
 type ArticlesPageProps = {};
 
-const ArticlesPage: React.FC<ArticlesPageProps> = ({ children }) => {
+const ArticlesPage: React.FC<ArticlesPageProps> = ({}) => {
   const { data: articles, error, isLoading } = useGetArticlesQuery(undefined);
 
   return (
@@ -15,11 +15,11 @@ const ArticlesPage: React.FC<ArticlesPageProps> = ({ children }) => {
         <>Loading...</>
       ) : articles ? (
         <>
-          <h1>We Found {articles.length} Articles</h1>
+          <h1>We Found {articles.length}</h1>
           <ul>
             {articles.map((article: Article) => {
               return (
-                <li key={article.id}>
+                <li key={article.id} className="bg-blue-50">
                   <Link to={`/articles/${article.id}`}>
                     {article.attributes.title}
                   </Link>
