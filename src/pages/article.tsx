@@ -14,6 +14,19 @@ const ArticlePage: React.FC<ArticlePageProps> = () => {
   const { id } = useParams<IParams>();
   const {
     data: article,
+    data: {
+      article: {
+        relationships: {
+          author: {
+            data: {
+              attributes: {
+                name: authorName,
+              }
+            }
+          }
+        }
+      }
+    },
     error,
     isLoading,
   } = useGetArticleByIdQuery(Number(id));
@@ -36,7 +49,7 @@ const ArticlePage: React.FC<ArticlePageProps> = () => {
             </div>
             <div>
               <p className="font-medium">
-                {article.relationships.author.data.attributes.name}
+                {authorName}
               </p>
               <p className="text-sm text-gray-400">
                 {article.relationships.author.data.attributes.email}
